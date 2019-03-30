@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="ACV_Bug.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:ACV_Bug.Models"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <ListView SelectionChanged="ListView_SelectionChanged" x:Name="MyListView">
+            <ListViewItem>Adults</ListViewItem>
+            <ListViewItem>Kids</ListViewItem>
+            <ListViewItem>All</ListViewItem>
+        </ListView>
+        <ListView ItemsSource="{x:Bind ViewModel.SelectedPeopleList, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:Person">
+                    <CheckBox IsChecked="{x:Bind IsAdult, Mode=OneWay}" Content="{x:Bind Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</Page>
